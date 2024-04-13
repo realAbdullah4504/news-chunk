@@ -1,0 +1,9 @@
+{
+  "root": "articles/build/",
+  "routes": {
+    "/login": "Login.js",
+    "/signup": "index.js",
+    "/login": "index.html",
+    "/": "index.html"
+  }
+}

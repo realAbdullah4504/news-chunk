@@ -1,0 +1,13 @@
+.leftBorder{
+border-top-left-radius:2000px ;
+border-bottom-left-radius:11250px ;
+}
+.rightBorder{
+    border-top-right-radius:11250px ;
+    border-bottom-right-radius:2000px ;
+    }
+    .close{
+        position: absolute;
+        top:-19px;
+        right:-13px;
+    }
