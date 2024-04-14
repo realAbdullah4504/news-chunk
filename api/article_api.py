@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, send_from_directory
 from flask_mail import Mail, Message
-from scraping_script import main
+# from scraping_script import main
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import pdb, math, os
 from dotenv import load_dotenv
@@ -17,7 +17,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import json
 
-app = Flask(__name__, static_folder='articles/build', static_url_path='')
+app = Flask(__name__, static_folder='../articles/build', static_url_path='')
 load_dotenv()
 jwt_secret_key = 'iam good'
 app.config['JWT_SECRET_KEY'] = jwt_secret_key
