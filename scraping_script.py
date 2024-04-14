@@ -18,15 +18,15 @@ batch_size = 5
 
 def initialize(ping = False):
     load_dotenv()
-    db_username = os.environ['DB_USERNAME']
-    db_password = os.environ['DB_PASSWORD']
-    db_url = os.environ['MONGODB_URL']
-    uri = "mongodb+srv://" + db_username + ":" + db_password + "@" + db_url + "/?retryWrites=true&w=majority"
+    # db_username = os.environ['DB_USERNAME']
+    # db_password = os.environ['DB_PASSWORD']
+    # db_url = os.environ['MONGODB_URL']
+    # uri = "mongodb+srv://" + db_username + ":" + db_password + "@" + db_url + "/?retryWrites=true&w=majority"
     # Create a new client and connect to the server
-    if (os.environ["ENV"] == "production"):
-        client = MongoClient(uri, server_api=ServerApi('1'))
-    else:
-        client = MongoClient("mongodb://localhost:27017")
+    # if (os.environ["ENV"] == "production"):
+    #     client = MongoClient(uri, server_api=ServerApi('1'))
+    # else:
+    client = MongoClient("mongodb+srv://abdullahjaved4504:Test123@cluster0.duvi6gl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     # Send a ping to confirm a successful connection
     if ping:
       try:
