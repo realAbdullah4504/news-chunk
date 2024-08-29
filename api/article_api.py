@@ -1,15 +1,15 @@
 from flask import Flask, jsonify, request, send_from_directory
 from flask_mail import Mail, Message
-# from scraping_script import main
+# from scraping_script import main 
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import pdb, math, os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from newsapi.newsapi_client import NewsApiClient
 from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from flask_cors import CORS, cross_origin
-from apscheduler.schedulers.blocking import BlockingScheduler
+# from apscheduler.schedulers.blocking import BlockingScheduler
 from bson import ObjectId 
 import secrets
 import smtplib
@@ -18,7 +18,7 @@ from email.mime.text import MIMEText
 import json
 
 app = Flask(__name__, static_folder='../articles/build', static_url_path='')
-load_dotenv()
+# load_dotenv()
 jwt_secret_key = 'iam good'
 app.config['JWT_SECRET_KEY'] = jwt_secret_key
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
@@ -43,7 +43,7 @@ database = None
 page_size = 10
 
 def initialize(ping = False):
-    load_dotenv()
+    # load_dotenv()
     # db_username = os.environ['DB_USERNAME']
     # db_password = os.environ['DB_PASSWORD']
     # db_url = os.environ['MONGODB_URL']
@@ -920,4 +920,4 @@ def send_email(subject, receiver_email, sender_email, content):
 
 if __name__ == "__main__":
     initialize()
-    app.run()
+    app.run(port=3000)
