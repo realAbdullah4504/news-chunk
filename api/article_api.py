@@ -3,7 +3,7 @@ from flask_mail import Mail, Message
 # from scraping_script import main 
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import pdb, math, os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from newsapi.newsapi_client import NewsApiClient
 from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
@@ -18,19 +18,17 @@ from email.mime.text import MIMEText
 import json
 
 app = Flask(__name__, static_folder='../articles/build', static_url_path='')
-# load_dotenv()
-jwt_secret_key = 'iam good'
+load_dotenv()
+jwt_secret_key = os.environ.get('JWT_SECRET_KEY', 'iam good')
+smtp_server = os.environ.get('MAIL_SERVER')
+smtp_port = int(os.environ.get('MAIL_PORT', 587))
+smtp_username = os.environ.get('MAIL_USERNAME')
+smtp_password = os.environ.get('MAIL_PASSWORD')
 app.config['JWT_SECRET_KEY'] = jwt_secret_key
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
 jwt = JWTManager(app)
 
 bcrypt = Bcrypt(app)
-
-# Email configuration
-# smtp_server = os.environ.get('MAIL_SERVER')  # Replace with your SMTP server address
-# smtp_port = int(os.environ.get('MAIL_PORT'))  # Replace with your SMTP server's port (587 is the default for TLS)
-# smtp_username = os.environ.get('MAIL_USERNAME')  # Replace with your SMTP username
-# smtp_password = os.environ.get('MAIL_PASSWORD')  # Replace with your SMTP password
 
 mail=Mail(app)
 
@@ -43,17 +41,15 @@ database = None
 page_size = 10
 
 def initialize(ping = False):
-    # load_dotenv()
-    # db_username = os.environ['DB_USERNAME']
-    # db_password = os.environ['DB_PASSWORD']
-    # db_url = os.environ['MONGODB_URL']
-    # uri = "mongodb+srv://" + db_username + ":" + db_password + "@" + db_url + "/?retryWrites=true&w=majority"
-    uri="mongodb+srv://abdullahjaved4504:Test123@cluster0.duvi6gl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    db_username = os.environ['DB_USERNAME']
+    db_password = os.environ['DB_PASSWORD']
+    db_url = os.environ['MONGODB_URL']
+    uri = "mongodb+srv://" + db_username + ":" + db_password + "@" + db_url + "/?retryWrites=true&w=majority"
     # Create a new client and connect to the server
-    # if (os.environ["ENV"] == "production"):
-    #     client = MongoClient(uri, server_api=ServerApi('1'))
-    # else:
-    client = MongoClient("mongodb+srv://abdullahjaved4504:Test123@cluster0.duvi6gl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    if (os.environ["ENV"] == "production"):
+        client = MongoClient(uri, server_api=ServerApi('1'))
+    else:
+        client = MongoClient(uri)
     # Send a ping to confirm a successful connection
     if ping:
       try:

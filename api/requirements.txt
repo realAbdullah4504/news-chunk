@@ -20,7 +20,9 @@ Flask-Bcrypt==1.0.1
 Flask-Cors==4.0.1
 Flask-JWT-Extended==4.6.0
 Flask-Mail==0.10.0
+python-dotenv==1.0.0
 idna==3.8
+newspaper3k
 itsdangerous==2.2.0
 jedi==0.19.1
 Jinja2==3.1.4
@@ -56,3 +58,7 @@ wcwidth==0.2.13
 webencodings==0.5.1
 Werkzeug==3.0.4
 yarg==0.1.9
+lxml[html-clean]
+pandas
+scikit-learn
+apscheduler
